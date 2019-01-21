@@ -42,7 +42,7 @@ internal class IdleConsentDialog : DialogFragment() {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
                 .setView(R.layout.idle_consent_dialog)
-                .setPositiveButton("agree") { _ , _ ->
+                .setPositiveButton(getString(R.string.agree)) { _, _ ->
                     val privacyAccepted = if (config.requirePrivacy) {
                         true
                     } else {
@@ -121,15 +121,15 @@ internal class IdleConsentDialog : DialogFragment() {
         val mandatoryItems = mutableListOf<String>()
 
         if (hasTermsAndConditions(config)) {
-            mandatoryItems.add("Terms and Conditions")
+            mandatoryItems.add(getString(R.string.terms_and_conditions))
         }
 
         if (config.requirePrivacy) {
-            mandatoryItems.add("Privacy Policy")
+            mandatoryItems.add(getString(R.string.privacy_policy))
         }
 
         dialog.mandatory_items.setTextOrGone(
-            buildListSection("By selecting AGREE you acknowledge and accept our: ", mandatoryItems))
+            buildListSection(getString(R.string.mandatory_accept), mandatoryItems))
     }
 
     private fun hasTermsAndConditions(config: IdleConsentConfig): Boolean {

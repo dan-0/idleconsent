@@ -2,10 +2,8 @@ package com.idleoffice.idledisclaimer
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.idleoffice.idleconsent.IdleConsent
-import com.idleoffice.idleconsent.IdleConsentCallback
 import com.idleoffice.idleconsent.IdleConsentConfig
 import com.idleoffice.idleconsent.IdleInfoSource
 

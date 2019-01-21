@@ -27,22 +27,19 @@ class IdleInfoSource private constructor(
      * A [IdleInfoSource] that starts the given [activity] to display information to the user when the user
      * clicks on the provided [linkText] in the dialog
      */
-    constructor(linkText: CharSequence, activity: Class<out Activity>) : this(linkText,
-        InfoType.ACTIVITY, activity)
+    constructor(linkText: CharSequence, activity: Class<out Activity>) : this(linkText, InfoType.ACTIVITY, activity)
 
     /**
      * A [IdleInfoSource] that launches the the given [url] to display information to the user when the user
      * clicks on the provided [linkText] in the dialog
      */
-    constructor(linkText: CharSequence, url: Uri) : this(linkText,
-        InfoType.WEB, url)
+    constructor(linkText: CharSequence, url: Uri) : this(linkText, InfoType.WEB, url)
 
     /**
-     * A [IdleInfoSource] that starts an [Activity], passing in the given [text] to it's [TextView] when the user
-     * clicks on the provided [linkText] in the dialog
+     * A [IdleInfoSource] that starts an [Activity], passing in the given [text] to it's [android.widget.TextView]
+     * when the user clicks on the provided [linkText] in the dialog
      */
-    constructor(linkText: CharSequence, text: CharSequence) : this(linkText,
-        InfoType.TEXT, text)
+    constructor(linkText: CharSequence, text: CharSequence) : this(linkText, InfoType.TEXT, text)
 
     /**
      * Show the information related to the given [data]

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">idleconsent</string>
+    <string name="agree">agree</string>
+    <string name="mandatory_accept">By selecting AGREE you acknowledge and accept our:</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
 </resources>

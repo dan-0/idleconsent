@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.idleoffice.idleconsent">
-    <application>
+    <application
+            android:allowBackup="false">
         <activity android:name=".view.InfoTextActivity"/>
     </application>
 </manifest>
