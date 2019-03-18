@@ -25,7 +25,10 @@ import com.idleoffice.idleconsent.validation.IdleConsentConfigValidator
 import com.idleoffice.idleconsent.view.IdleConsentDialog
 import com.idleoffice.idleconsent.view.IdleConsentDialog.Companion.CONSENT_CONFIG_KEY
 
-class IdleConsent private constructor() {
+/**
+ * Main class user consent actions
+ */
+class IdleConsent internal constructor( /* exposed for testing */) {
 
     var hasUserAgreedToTerms = Companion.hasUserAgreedToTerms
         private set
@@ -37,13 +40,12 @@ class IdleConsent private constructor() {
         internal const val TOC_KEY = "$CONSENT_SHARED_PREF_KEY.TOC"
         internal const val PRIVACY_KEY = "$CONSENT_SHARED_PREF_KEY.PRIVACY"
 
-        private lateinit var config: IdleConsentConfig
         private var instance: IdleConsent? = null
 
         private var hasUserAgreedToTerms = false
         private var hasUserAgreedToPrivacy = false
 
-        fun getInstance(context: Context, config: IdleConsentConfig): IdleConsent {
+        fun getInstance(context: Context): IdleConsent {
             if (instance != null) {
                 return instance!!
             }
@@ -51,8 +53,6 @@ class IdleConsent private constructor() {
             val prefs = context.getSharedPreferences(CONSENT_SHARED_PREF_KEY, Context.MODE_PRIVATE)
             hasUserAgreedToTerms = prefs.getBoolean(TOC_KEY, false)
             hasUserAgreedToPrivacy = prefs.getBoolean(PRIVACY_KEY, false)
-
-            this.config = config
 
             instance = IdleConsent()
 
@@ -62,7 +62,8 @@ class IdleConsent private constructor() {
 
     fun showConsentDialog(
         fragmentManager: FragmentManager,
-        onAcceptCallback: IdleConsentCallback?
+        onAcceptCallback: IdleConsentCallback?,
+        config: IdleConsentConfig
     ) {
         val dialog = IdleConsentDialog()
 

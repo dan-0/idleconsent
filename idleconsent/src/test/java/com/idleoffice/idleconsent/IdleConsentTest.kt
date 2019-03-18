@@ -55,17 +55,12 @@ class IdleConsentTest {
         whenever(mockPrefs.getBoolean(IdleConsent.TOC_KEY, false)).thenReturn(true)
         whenever(mockPrefs.getBoolean(IdleConsent.PRIVACY_KEY, false)).thenReturn(true)
 
-        ut = IdleConsent.getInstance(mockContext, testConfig)
+        ut = IdleConsent()
     }
 
     @Test
-    fun `getInstance happy path`() {
-        assertTrue(ut.hasUserAgreedToPrivacy)
-        assertTrue(ut.hasUserAgreedToTerms)
-
-        // Try twice, ensure item isn't reinstantiated
-        val consentTwo = IdleConsent.getInstance(mockContext, testConfig)
-
+    fun `test singleton instantiation`() {
+        IdleConsent.getInstance(mockContext)
         verify(mockContext, times(1)).getSharedPreferences(any(), any())
         verify(mockPrefs, times(1)).getBoolean(IdleConsent.TOC_KEY, false)
         verify(mockPrefs, times(1)).getBoolean(IdleConsent.PRIVACY_KEY, false)

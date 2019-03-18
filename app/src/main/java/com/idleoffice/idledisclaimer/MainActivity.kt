@@ -46,9 +46,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val consent = IdleConsent.getInstance(this, idleConfig)
+        val consent = IdleConsent.getInstance(this)
         if (!consent.hasUserAgreedToTerms) {
-            consent.showConsentDialog(supportFragmentManager, null)
+            consent.showConsentDialog(supportFragmentManager, null, idleConfig)
         }
     }
 }
