@@ -22,14 +22,17 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_background"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        style="@style/idledialog">
 
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            style="@style/idledialog.headerspace"/>
     <View
             android:id="@+id/titleDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="16dp"
             android:background="@android:color/darker_gray"/>
 
     <ScrollView
@@ -42,53 +45,53 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/dialog.content"
+                style="@style/idledialog.content"
                 android:orientation="vertical">
 
             <TextView
                     android:id="@+id/intro_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.text"
+                    style="@style/idledialog.text"
                     tools:text="Intro"/>
 
             <TextView
                     android:id="@+id/terms_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.text"/>
+                    style="@style/idledialog.text"/>
 
             <TextView
                     android:id="@+id/terms_link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.text.link"/>
+                    style="@style/idledialog.text.link"/>
 
             <TextView
                     android:id="@+id/data_collected_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.text"
+                    style="@style/idledialog.text"
                     tools:text="Test"/>
             
             <TextView
                     android:id="@+id/data_collected_link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.text.link"/>
+                    style="@style/idledialog.text.link"/>
 
             <CheckBox
                     android:id="@+id/accept_privacy_policy_prompt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.checkbox"
+                    style="@style/idledialog.checkbox"
                     tools:text="Text text"/>
 
             <TextView
                     android:id="@+id/mandatory_items"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/dialog.text"/>
+                    style="@style/idledialog.text"/>
 
             <View
                     android:id="@+id/bottomSpacer"
