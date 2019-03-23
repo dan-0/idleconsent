@@ -28,22 +28,21 @@ import com.idleoffice.idleconsent.view.IdleConsentDialog.Companion.CONSENT_CONFI
 /**
  * Main class user consent actions
  */
-class IdleConsent internal constructor( /* exposed for testing */) {
+class IdleConsent private constructor(versionCode: Long) {
 
-    var hasUserAgreedToTerms = _hasUserAgreedToTerms
+
+
+    var hasUserAgreedToTerms = false
         private set
-    var hasUserAgreedToPrivacy = _hasUserAgreedToPrivacy
+    var hasUserAgreedToPrivacy = false
         private set
+
+    private val sharedPrefKey = "com.idleoffice.idleconsent.prefs$versionCode"
+    private val tocPrefKey = "$sharedPrefKey.TOC"
+    private val privacyPrefKey = "$sharedPrefKey.PRIVACY"
 
     companion object {
-        internal const val CONSENT_SHARED_PREF_KEY = "com.idleoffice.idleconsent.prefs"
-        internal const val TOC_KEY = "$CONSENT_SHARED_PREF_KEY.TOC"
-        internal const val PRIVACY_KEY = "$CONSENT_SHARED_PREF_KEY.PRIVACY"
-
         private var instance: IdleConsent? = null
-
-        private var _hasUserAgreedToTerms = false
-        private var _hasUserAgreedToPrivacy = false
 
         @JvmStatic
         fun getInstance(context: Context): IdleConsent {
@@ -51,14 +50,23 @@ class IdleConsent internal constructor( /* exposed for testing */) {
                 return instance!!
             }
 
-            val prefs = context.getSharedPreferences(CONSENT_SHARED_PREF_KEY, Context.MODE_PRIVATE)
-            _hasUserAgreedToTerms = prefs.getBoolean(TOC_KEY, false)
-            _hasUserAgreedToPrivacy = prefs.getBoolean(PRIVACY_KEY, false)
+            val info = context.packageManager.getPackageInfo(context.packageName, 0)
+            info.longVersionCode
 
-            instance = IdleConsent()
+            instance = IdleConsent(info.longVersionCode).also {
+                it.setup(context)
+            }
 
             return instance!!
         }
+    }
+
+    private fun setup(context: Context) {
+
+
+        val prefs = context.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE)
+        hasUserAgreedToTerms = prefs.getBoolean(tocPrefKey, false)
+        hasUserAgreedToPrivacy = prefs.getBoolean(privacyPrefKey, false)
     }
 
     /**
@@ -98,9 +106,9 @@ class IdleConsent internal constructor( /* exposed for testing */) {
     internal fun updateUserPrefs(context: Context, isTermsAccepted: Boolean, isPrivacyAccepted: Boolean) {
         hasUserAgreedToTerms = isTermsAccepted
         hasUserAgreedToPrivacy = isPrivacyAccepted
-        context.getSharedPreferences(CONSENT_SHARED_PREF_KEY, Context.MODE_PRIVATE).edit()
-            .putBoolean(TOC_KEY, isTermsAccepted)
-            .putBoolean(PRIVACY_KEY, isPrivacyAccepted)
+        context.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE).edit()
+            .putBoolean(tocPrefKey, isTermsAccepted)
+            .putBoolean(privacyPrefKey, isPrivacyAccepted)
             .apply()
     }
 }
