@@ -19,6 +19,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.idleoffice.idleconsent">
     <application>
-        <activity android:name=".view.InfoTextActivity"/>
+        <activity
+                android:name=".view.InfoTextActivity"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

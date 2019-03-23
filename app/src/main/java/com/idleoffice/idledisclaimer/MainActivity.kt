@@ -21,9 +21,7 @@ package com.idleoffice.idledisclaimer
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.idleoffice.idleconsent.IdleConsent
-import com.idleoffice.idleconsent.IdleConsentConfig
-import com.idleoffice.idleconsent.IdleInfoSource
+import com.idleoffice.idleconsent.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         "We care about your experience and privacy using Super Testy App. Please take a moment to read through and acknowledge our policies",
         "To ensure the best experience, we collect anonymized user data to inform us of crashes and how our users interact with the app.",
         listOf("GPS location", "Device information", "Usage statistics"),
-        IdleInfoSource(
+        IdleInfoSource.Web(
             "Please see our full privacy policy.",
             Uri.parse("https://idleoffice-26abd.firebaseapp.com/quicklink/privacy_policy.html")
         ),
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         "Please support Super Testy App by allowing us to use your data as mentioned in the privacy policy",
         true,
         "In order to use Super Testy App we require that you agree to our terms and conditions:",
-        IdleInfoSource("See full terms and condtions", DemoActivity ::class.java)
+        IdleInfoSource.Text("See full terms and condtions", "This is just a test")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

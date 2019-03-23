@@ -18,22 +18,33 @@
 
 package com.idleoffice.idleconsent.view
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.MenuItem
-import com.idleoffice.idleconsent.IdleInfoSource
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.idleoffice.idleconsent.R
 import kotlinx.android.synthetic.main.activity_info_text.*
 
-internal class InfoTextActivity: Activity() {
+internal class InfoTextActivity: AppCompatActivity() {
+    companion object {
+        internal const val INFO_TEXT_KEY = "INFO_TEXT_KEY"
+        internal const val TITLE_TEXT_KEY = "TITLE_TEXT_KEY"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_text)
-        setActionBar(infoTextToolbar)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.title = null
 
-        infoText.text = intent.getCharSequenceExtra(IdleInfoSource.INFO_TEXT_KEY)
+        intent.getCharSequenceExtra(TITLE_TEXT_KEY)?.let {
+            setSupportActionBar(infoTextToolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = it
+        } ?: run {
+            supportActionBar?.hide()
+            infoTextToolbar.visibility = View.GONE
+        }
+
+        infoText.text = intent.getCharSequenceExtra(INFO_TEXT_KEY)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -56,18 +56,6 @@
                     tools:text="Intro"/>
 
             <TextView
-                    android:id="@+id/terms_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/idledialog.text"/>
-
-            <TextView
-                    android:id="@+id/terms_link"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/idledialog.text.link"/>
-
-            <TextView
                     android:id="@+id/data_collected_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,6 +74,18 @@
                     android:layout_height="wrap_content"
                     style="@style/idledialog.checkbox"
                     tools:text="Text text"/>
+
+            <TextView
+                    android:id="@+id/terms_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/idledialog.text"/>
+
+            <TextView
+                    android:id="@+id/terms_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/idledialog.text.link"/>
 
             <TextView
                     android:id="@+id/mandatory_items"

@@ -20,7 +20,6 @@ package com.idleoffice.idleconsent.view
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -31,10 +30,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.idleoffice.idleconsent.IdleConsent
-import com.idleoffice.idleconsent.IdleConsentCallback
-import com.idleoffice.idleconsent.R
-import com.idleoffice.idleconsent.IdleConsentConfig
+import com.idleoffice.idleconsent.*
 import kotlinx.android.synthetic.main.idle_consent_dialog.*
 
 internal class IdleConsentDialog : DialogFragment() {
@@ -66,7 +62,7 @@ internal class IdleConsentDialog : DialogFragment() {
                     } else {
                         dialog.accept_privacy_policy_prompt.isChecked
                     }
-                    acceptedCallback?.onAccept(true, privacyAccepted)
+                    acceptedCallback?.onAcknowledged(true, privacyAccepted)
 
                     IdleConsent.getInstance(it).updateUserPrefs(it, true, privacyAccepted)
                 }
@@ -89,19 +85,11 @@ internal class IdleConsentDialog : DialogFragment() {
 
         dialog.terms_text.setTextOrGone(buildListSection(config.termsSummary, listOf()))
 
-        val isTermsInfoNull = config.termsInfoSource == null
-        dialog.terms_link.setTextOrGone(config.termsInfoSource?.linkText, !isTermsInfoNull)
-        if (!isTermsInfoNull) {
-            dialog.terms_link.setOnClickListener { config.termsInfoSource!!.showInfo(it.context) }
-        }
+        addInfoSource(config.termsInfoSource, dialog.terms_link)
 
         dialog.data_collected_text.setTextOrGone(buildListSection(config.dataCollectedSummary, config.dataCollected))
 
-        val isPrivacyInfoNull = config.privacyInfoSource == null
-        dialog.data_collected_link.setTextOrGone(config.privacyInfoSource?.linkText, !isPrivacyInfoNull)
-        if (!isPrivacyInfoNull) {
-            dialog.data_collected_link.setOnClickListener { config.privacyInfoSource!!.showInfo(it.context) }
-        }
+        addInfoSource(config.privacyInfoSource, dialog.data_collected_link)
 
         dialog.accept_privacy_policy_prompt.isChecked = config.privacyPromptChecked
         dialog.accept_privacy_policy_prompt.setOnCheckedChangeListener { _, isChecked ->
@@ -112,6 +100,13 @@ internal class IdleConsentDialog : DialogFragment() {
         setMandatoryTextInfo(config)
     }
 
+    private fun addInfoSource(source: IdleInfoSource?, view: TextView) {
+        source?.let { infoSource ->
+            view.setTextOrGone(infoSource.linkText, true)
+            view.setOnClickListener { infoSource.showInfo(it.context) }
+        } ?: view.gone()
+    }
+
     fun show(manager: FragmentManager, callback: IdleConsentCallback?) {
         acceptedCallback = callback
         super.show(manager, null)
@@ -120,6 +115,7 @@ internal class IdleConsentDialog : DialogFragment() {
     private fun buildListSection(description: CharSequence, items: List<CharSequence>): SpannableStringBuilder {
         val builder = SpannableStringBuilder()
         builder.append(description)
+        builder.appendln("")
         buildBulletedList(builder, items)
         return builder
     }
@@ -128,7 +124,7 @@ internal class IdleConsentDialog : DialogFragment() {
         items.forEach {
             val item = SpannableString("\n$it")
             item.setSpan(LeadingMarginSpan.Standard(30, 60), 1, item.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            item.setSpan(BulletSpan(30, Color.BLACK), 1, item.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            item.setSpan(BulletSpan(30), 1, item.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             builder.append(item)
         }
 

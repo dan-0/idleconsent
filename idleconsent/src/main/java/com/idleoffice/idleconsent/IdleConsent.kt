@@ -30,9 +30,9 @@ import com.idleoffice.idleconsent.view.IdleConsentDialog.Companion.CONSENT_CONFI
  */
 class IdleConsent internal constructor( /* exposed for testing */) {
 
-    var hasUserAgreedToTerms = Companion.hasUserAgreedToTerms
+    var hasUserAgreedToTerms = _hasUserAgreedToTerms
         private set
-    var hasUserAgreedToPrivacy = Companion.hasUserAgreedToPrivacy
+    var hasUserAgreedToPrivacy = _hasUserAgreedToPrivacy
         private set
 
     companion object {
@@ -42,17 +42,18 @@ class IdleConsent internal constructor( /* exposed for testing */) {
 
         private var instance: IdleConsent? = null
 
-        private var hasUserAgreedToTerms = false
-        private var hasUserAgreedToPrivacy = false
+        private var _hasUserAgreedToTerms = false
+        private var _hasUserAgreedToPrivacy = false
 
+        @JvmStatic
         fun getInstance(context: Context): IdleConsent {
             if (instance != null) {
                 return instance!!
             }
 
             val prefs = context.getSharedPreferences(CONSENT_SHARED_PREF_KEY, Context.MODE_PRIVATE)
-            hasUserAgreedToTerms = prefs.getBoolean(TOC_KEY, false)
-            hasUserAgreedToPrivacy = prefs.getBoolean(PRIVACY_KEY, false)
+            _hasUserAgreedToTerms = prefs.getBoolean(TOC_KEY, false)
+            _hasUserAgreedToPrivacy = prefs.getBoolean(PRIVACY_KEY, false)
 
             instance = IdleConsent()
 
@@ -60,6 +61,12 @@ class IdleConsent internal constructor( /* exposed for testing */) {
         }
     }
 
+    /**
+     * Display the consent dialog to the user.
+     *
+     * @param fragmentManager [FragmentManager] to hold the view
+     * @param onAcceptCallback [IdleConsentCallback] to receive a callback of a user action
+     */
     fun showConsentDialog(
         fragmentManager: FragmentManager,
         onAcceptCallback: IdleConsentCallback?,
