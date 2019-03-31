@@ -71,7 +71,7 @@ internal class IdleConsentDialog : DialogFragment() {
                     }
                     acceptedCallback?.onAcknowledged(true, privacyAccepted)
 
-                    IdleConsent.getInstance(it).updateUserPrefs(it, true, privacyAccepted, config.version)
+                    IdleConsent(it).updateUserPrefs(true, privacyAccepted, config.version)
                 }
                 .setCancelable(false)
 

@@ -45,14 +45,15 @@ class MainActivity : AppCompatActivity() {
         "Please support Super Testy App by allowing us to use your data as mentioned in the privacy policy",
         true,
         "In order to use Super Testy App we require that you agree to our terms and conditions:",
-        IdleInfoSource.Text("See full terms and condtions", "This is just a test")
+        IdleInfoSource.Text("See full terms and condtions", "This is just a test"),
+        version = 2
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val consent = IdleConsent.getInstance(this)
-        if (!consent.hasUserAgreedToTerms) {
+        val consent = IdleConsent(this)
+        if (!consent.hasUserAgreedToTerms() || consent.isNewConsentVersion(2)) {
             consent.showConsentDialog(supportFragmentManager, null, idleConfig)
         }
     }
