@@ -1,0 +1,31 @@
+image: jangrewe/gitlab-ci-android
+
+before_script:
+- export GRADLE_USER_HOME=$(pwd)/.gradle
+- chmod +x ./gradlew
+
+stages:
+- build
+- test
+- deploy
+
+build:
+  stage: build
+  script:
+  - ./gradlew build
+  artifacts:
+    paths:
+    - app/build/outputs/
+
+unitTests:
+  stage: test
+  script:
+  - ./gradlew :idleconsent:test
+
+deploy:
+  stage: deploy
+  script:
+  - ./gradlew build bintrayUpload -PbintrayUser=$BINTRAY_USER -PbintrayKey=$BINTRAY_API_KEY -PdryRun=false
+  only:
+    variables:
+    - $CI_COMMIT_MESSAGE =~ /^Release:\ .*\./

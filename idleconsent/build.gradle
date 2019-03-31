@@ -28,6 +28,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+ext {
+    versionName = "0.2.3-alpha"
+}
+
 android {
     compileSdkVersion 28
 
@@ -35,7 +39,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "$versionName"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -58,7 +62,7 @@ publish {
     repoName = 'IdleConsent'
     groupId = 'com.idleoffice'
     artifactId = 'idleconsent'
-    publishVersion = '0.2.2-alpha'
+    publishVersion = "$versionName"
     desc = 'Android library for easily building and providing a privacy and terms and conditions consent dialog as well as managing user privacy preferences.'
     website = 'https://gitlab.com/dan-0/idleconsent'
 }
