@@ -1,3 +1,5 @@
+![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg)
+
 # IdleConsent
 A simple library for adding a **privacy** and **terms and conditions** dialog
 to your application.

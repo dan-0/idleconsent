@@ -17,11 +17,6 @@ build:
     paths:
     - app/build/outputs/
 
-unitTests:
-  stage: test
-  script:
-  - ./gradlew :idleconsent:test
-
 deploy:
   stage: deploy
   script:
