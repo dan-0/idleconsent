@@ -41,6 +41,7 @@ import kotlinx.android.parcel.Parcelize
  * @param privacyPromptChecked Default checkbox state for the optional [acceptPrivacyPrompt]
  * @param termsSummary Summary of app terms and conditions
  * @param termsInfoSource [IdleInfoSource] for displaying an extended version of the app's terms and conditions
+ * @param version Policy [version], increase to display to user if policy is updated
  */
 @Parcelize
 data class IdleConsentConfig(
@@ -53,7 +54,8 @@ data class IdleConsentConfig(
     val acceptPrivacyPrompt: CharSequence = "",
     var privacyPromptChecked: Boolean = true,
     val termsSummary: CharSequence = "",
-    val termsInfoSource: IdleInfoSource? = null
+    val termsInfoSource: IdleInfoSource? = null,
+    val version: Long = 0
 ) : Parcelable {
     class Builder(config: IdleConsentConfig?) {
         private val newConfig = config ?: IdleConsentConfig("")
@@ -68,6 +70,7 @@ data class IdleConsentConfig(
         private var privacyPromptChecked: Boolean = newConfig.privacyPromptChecked
         private var termsSummary: CharSequence = newConfig.termsSummary
         private var termsInfoSource: IdleInfoSource? = newConfig.termsInfoSource
+        private var version: Long = newConfig.version
 
         fun setConsentTitle(consentTitle: CharSequence): IdleConsentConfig.Builder {
             this.consentTitle = consentTitle
@@ -119,6 +122,11 @@ data class IdleConsentConfig(
             return this
         }
 
+        fun setVersion(version: Long): IdleConsentConfig.Builder {
+            this.version = version
+            return this
+        }
+
         fun build(): IdleConsentConfig {
             return IdleConsentConfig(
                 consentTitle,
@@ -130,7 +138,8 @@ data class IdleConsentConfig(
                 acceptPrivacyPrompt,
                 privacyPromptChecked,
                 termsSummary,
-                termsInfoSource
+                termsInfoSource,
+                version
             )
         }
     }

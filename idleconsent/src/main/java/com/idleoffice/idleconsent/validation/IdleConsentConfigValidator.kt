@@ -28,10 +28,16 @@ package com.idleoffice.idleconsent.validation
 import com.idleoffice.idleconsent.IdleConsentConfig
 
 internal object IdleConsentConfigValidator {
+
+    @Throws(IdleConsentConfigException::class)
     fun validate(consentConfig: IdleConsentConfig) {
         val errors = mutableListOf<String>()
 
         validateRequirePrivacy(consentConfig)?.also {
+            errors.add(it)
+        }
+
+        validateVersion(consentConfig)?.also {
             errors.add(it)
         }
 
@@ -41,12 +47,25 @@ internal object IdleConsentConfigValidator {
     }
 
     private fun validateRequirePrivacy(config: IdleConsentConfig): String? {
-        if (!config.requirePrivacy && config.acceptPrivacyPrompt.isEmpty()) {
-            return "an acceptPrivacyPrompt must be provided if requirePrivacy is false"
+        return if (!config.requirePrivacy && config.acceptPrivacyPrompt.isEmpty()) {
+            "an acceptPrivacyPrompt must be provided if requirePrivacy is false"
+        } else {
+            null
         }
-
-        return null
     }
 
-    private class IdleConsentConfigException(msg: String): Error(msg)
+    private fun validateVersion(config: IdleConsentConfig): String? {
+        return if (config.version < 0) {
+            "version must be greater than 0"
+        } else {
+            null
+        }
+    }
 }
+
+/**
+ * Thrown if there is an error with the [IdleConsentConfig]
+ *
+ * @param msg A `|` separated list of errors
+ */
+class IdleConsentConfigException(msg: String) : Error(msg)

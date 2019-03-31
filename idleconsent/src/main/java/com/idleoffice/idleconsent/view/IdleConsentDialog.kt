@@ -71,7 +71,7 @@ internal class IdleConsentDialog : DialogFragment() {
                     }
                     acceptedCallback?.onAcknowledged(true, privacyAccepted)
 
-                    IdleConsent.getInstance(it).updateUserPrefs(it, true, privacyAccepted)
+                    IdleConsent.getInstance(it).updateUserPrefs(it, true, privacyAccepted, config.version)
                 }
                 .setCancelable(false)
 
@@ -150,7 +150,8 @@ internal class IdleConsentDialog : DialogFragment() {
         }
 
         dialog.mandatory_items.setTextOrGone(
-            buildListSection(getString(R.string.mandatory_accept), mandatoryItems))
+            buildListSection(getString(R.string.mandatory_accept), mandatoryItems)
+        )
     }
 
     private fun hasTermsAndConditions(config: IdleConsentConfig): Boolean {

@@ -28,6 +28,7 @@ package com.idleoffice.idleconsent
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import com.idleoffice.idleconsent.validation.IdleConsentConfigException
 import com.idleoffice.idleconsent.validation.IdleConsentConfigValidator
 import com.idleoffice.idleconsent.view.IdleConsentDialog
 import com.idleoffice.idleconsent.view.IdleConsentDialog.Companion.CONSENT_CONFIG_KEY
@@ -35,18 +36,19 @@ import com.idleoffice.idleconsent.view.IdleConsentDialog.Companion.CONSENT_CONFI
 /**
  * Main class user consent actions
  */
-class IdleConsent private constructor(versionCode: Long) {
-
-
+class IdleConsent private constructor() {
 
     var hasUserAgreedToTerms = false
         private set
     var hasUserAgreedToPrivacy = false
         private set
 
-    private val sharedPrefKey = "com.idleoffice.idleconsent.prefs$versionCode"
+    private var currentVersion = -1L
+
+    private val sharedPrefKey = "com.idleoffice.idleconsent.prefs"
     private val tocPrefKey = "$sharedPrefKey.TOC"
     private val privacyPrefKey = "$sharedPrefKey.PRIVACY"
+    private val versionPrefKey = "$sharedPrefKey.VERSION"
 
     companion object {
         private var instance: IdleConsent? = null
@@ -57,10 +59,7 @@ class IdleConsent private constructor(versionCode: Long) {
                 return instance!!
             }
 
-            val info = context.packageManager.getPackageInfo(context.packageName, 0)
-            info.longVersionCode
-
-            instance = IdleConsent(info.longVersionCode).also {
+            instance = IdleConsent().also {
                 it.setup(context)
             }
 
@@ -69,11 +68,10 @@ class IdleConsent private constructor(versionCode: Long) {
     }
 
     private fun setup(context: Context) {
-
-
         val prefs = context.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE)
         hasUserAgreedToTerms = prefs.getBoolean(tocPrefKey, false)
         hasUserAgreedToPrivacy = prefs.getBoolean(privacyPrefKey, false)
+        currentVersion = prefs.getLong(versionPrefKey, -1)
     }
 
     /**
@@ -81,7 +79,10 @@ class IdleConsent private constructor(versionCode: Long) {
      *
      * @param fragmentManager [FragmentManager] to hold the view
      * @param onAcceptCallback [IdleConsentCallback] to receive a callback of a user action
+     * @param config [IdleConsentConfig] to use in displaying consent screen to user
+     * @throws IdleConsentConfigException if error with provided [config]
      */
+    @Throws(IdleConsentConfigException::class)
     fun showConsentDialog(
         fragmentManager: FragmentManager,
         onAcceptCallback: IdleConsentCallback?,
@@ -100,6 +101,11 @@ class IdleConsent private constructor(versionCode: Long) {
     }
 
     /**
+     * Returns true if the [newVersion] passed in is greater than the currently accepted version by the user
+     */
+    fun isNewConsentVersion(newVersion: Int): Boolean = newVersion > currentVersion
+
+    /**
      * Update the user preferences.
      *
      * @param context A context object
@@ -107,15 +113,27 @@ class IdleConsent private constructor(versionCode: Long) {
      * @param isPrivacyAccepted True if the user accepts the privacy agreement
      */
     fun updateUserPreferences(context: Context, isTermsAccepted: Boolean, isPrivacyAccepted: Boolean) {
-        updateUserPrefs(context, isTermsAccepted, isPrivacyAccepted)
+        updateUserPrefs(context, isTermsAccepted, isPrivacyAccepted, null)
     }
 
-    internal fun updateUserPrefs(context: Context, isTermsAccepted: Boolean, isPrivacyAccepted: Boolean) {
+    internal fun updateUserPrefs(
+        context: Context,
+        isTermsAccepted: Boolean,
+        isPrivacyAccepted: Boolean,
+        version: Long?
+    ) {
         hasUserAgreedToTerms = isTermsAccepted
         hasUserAgreedToPrivacy = isPrivacyAccepted
-        context.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE).edit()
-            .putBoolean(tocPrefKey, isTermsAccepted)
-            .putBoolean(privacyPrefKey, isPrivacyAccepted)
-            .apply()
+        val pref = context.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE).edit()
+
+        pref.putBoolean(tocPrefKey, isTermsAccepted)
+        pref.putBoolean(privacyPrefKey, isPrivacyAccepted)
+
+        if (version != null) {
+            currentVersion = version
+            pref.putLong(versionPrefKey, version)
+        }
+
+        pref.apply()
     }
 }
