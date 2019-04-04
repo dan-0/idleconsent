@@ -1,4 +1,5 @@
-![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg)
+![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg?sanitize=true)
+![Bintray](https://img.shields.io/bintray/v/idleoffice/IdleConsent/idleconsent.svg)
 
 # IdleConsent
 A simple library for adding a **privacy** and **terms and conditions** dialog
@@ -63,6 +64,22 @@ class ConsentActivity : AppCompatActivity() {
     }
 
 }
+```
+
+### Gradle
+To import using gradle ensure you have the following in your main `build.gradle` file:
+```groovy
+    repositories {
+        jcenter()
+    }
+```
+
+Add this to your application level `build.gradle`:
+```groovy
+    dependencies {
+        // Consent library
+        implementation 'com.idleoffice:idleconsent:[versionNumber]'
+    }
 ```
 
 ### Configuration
