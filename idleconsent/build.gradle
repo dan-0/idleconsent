@@ -58,8 +58,8 @@ android {
 }
 
 publish {
-    userOrg = 'idleoffice'
-    repoName = 'IdleConsent'
+    userOrg = 'dan-0'
+    repoName = 'idleconsent'
     groupId = 'me.danlowe'
     artifactId = 'idleconsent'
     publishVersion = "$versionName"
