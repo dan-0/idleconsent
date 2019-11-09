@@ -78,7 +78,7 @@ Add this to your application level `build.gradle`:
 ```groovy
     dependencies {
         // Consent library
-        implementation 'com.idleoffice:idleconsent:[versionNumber]'
+        implementation 'me.danlowe:idleconsent:[versionNumber]'
     }
 ```
 
