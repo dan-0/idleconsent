@@ -1,5 +1,6 @@
 ![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg?sanitize=true)
 ![Bintray](https://img.shields.io/bintray/v/idleoffice/IdleConsent/idleconsent.svg)
+[ ![Download](https://api.bintray.com/packages/idleoffice/IdleConsent/idleconsent/images/download.svg?version=0.2.5-alpha) ](https://bintray.com/idleoffice/IdleConsent/idleconsent/0.2.5-alpha/link)
 
 # IdleConsent
 A simple library for adding a **privacy** and **terms and conditions** dialog
