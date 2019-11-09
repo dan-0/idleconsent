@@ -28,7 +28,6 @@ package me.danlowe.idledisclaimer
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.idleoffice.idleconsent.*
 import com.idleoffice.idledisclaimer.R
 import me.danlowe.idleconsent.IdleConsent
 import me.danlowe.idleconsent.IdleConsentConfig
