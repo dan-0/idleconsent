@@ -29,7 +29,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 ext {
-    versionName = "0.2.4-alpha"
+    versionName = "0.2.5-alpha"
 }
 
 android {
@@ -60,7 +60,7 @@ android {
 publish {
     userOrg = 'idleoffice'
     repoName = 'IdleConsent'
-    groupId = 'com.idleoffice'
+    groupId = 'me.danlowe'
     artifactId = 'idleconsent'
     publishVersion = "$versionName"
     desc = 'Android library for easily building and providing a privacy and terms and conditions consent dialog as well as managing user privacy preferences.'
