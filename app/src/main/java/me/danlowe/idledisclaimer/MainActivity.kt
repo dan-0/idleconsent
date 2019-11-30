@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private val idleConfig = IdleConsentConfig(
         "Terms and Privacy Notice",
-        "We care about your experience and privacy using Super Testy App. Please take a moment to read through and acknowledge our policies",
+        "We care about your experience and privacy using Super Test App. Please take a moment to read through and acknowledge our policies",
         "To ensure the best experience, we collect anonymized user data to inform us of crashes and how our users interact with the app.",
         listOf("GPS location", "Device information", "Usage statistics"),
         IdleInfoSource.Web(
@@ -45,11 +45,11 @@ class MainActivity : AppCompatActivity() {
             Uri.parse("https://idleoffice-26abd.firebaseapp.com/quicklink/privacy_policy.html")
         ),
         false,
-        "Please support Super Testy App by allowing us to use your data as mentioned in the privacy policy",
+        "Please support Super Test App by allowing us to use your data as mentioned in the privacy policy",
         true,
-        "In order to use Super Testy App we require that you agree to our terms and conditions:",
+        "In order to use Super Test App we require that you agree to our terms and conditions:",
         IdleInfoSource.Text(
-            "See full terms and condtions",
+            "See full terms and conditions",
             "This is just a test"
         ),
         version = 2

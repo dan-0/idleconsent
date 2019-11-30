@@ -1,6 +1,17 @@
 ![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg?sanitize=true)
 ![Bintray](https://img.shields.io/bintray/v/idleoffice/IdleConsent/idleconsent.svg)
-[ ![Download](https://api.bintray.com/packages/idleoffice/IdleConsent/idleconsent/images/download.svg?version=0.2.5-alpha) ](https://bintray.com/idleoffice/IdleConsent/idleconsent/0.2.5-alpha/link)
+![Download](https://api.bintray.com/packages/idleoffice/IdleConsent/idleconsent/images/download.svg?version=0.2.5-alpha)(https://bintray.com/idleoffice/IdleConsent/idleconsent/0.2.5-alpha/link)
+
+<div>
+<ul class="text-center list-unstyled list-inline">
+<li>
+    ![Example 1](/graphics/example.png)
+</li>
+<li>
+    ![Example 2](/graphics/example2.png)
+</li>
+</ul>
+</div>
 
 # IdleConsent
 A simple library for adding a **privacy** and **terms and conditions** dialog
@@ -21,21 +32,24 @@ Simply specify a config and put it to use:
 class ConsentActivity : AppCompatActivity() {
 
     private val idleConfig = IdleConsentConfig(
-            consentTitle = "Disclosures",
-            introStatement = "Please take a moment to read through our privacy disclosure and terms of service.",
-            dataCollectedSummary = "To ensure the best experience we collect the following anonymized user data to inform uf of crashes and how our users interact with the app:",
-            dataCollected = listOf("Device information", "Usage statistics", "Advertising ID"),
-            privacyInfoSource = IdleInfoSource.Web(
-                    "Please see our full privacy policy.",
-                    Uri.parse("[URL to your privacy policy]")
-            ),
-            requirePrivacy = true,
-            acceptPrivacyPrompt = "Please take a moment and read our privacy policy",
-            privacyPromptChecked = true,
-            termsSummary = "Please take the time to look at our terms and conditions:",
-            termsInfoSource = IdleInfoSource.Web("See full terms and conditions", Uri.parse("URL to your terms and conditions")),
-            version = 2
-    )
+         "Terms and Privacy Notice",
+         "We care about your experience and privacy using Super Test App. Please take a moment to read through and acknowledge our policies",
+         "To ensure the best experience, we collect anonymized user data to inform us of crashes and how our users interact with the app.",
+         listOf("GPS location", "Device information", "Usage statistics"),
+         IdleInfoSource.Web(
+             "Please see our full privacy policy.",
+             Uri.parse("https://idleoffice-26abd.firebaseapp.com/quicklink/privacy_policy.html")
+         ),
+         false,
+         "Please support Super Test App by allowing us to use your data as mentioned in the privacy policy",
+         true,
+         "In order to use Super Test App we require that you agree to our terms and conditions:",
+         IdleInfoSource.Text(
+             "See full terms and conditions",
+             "This is just a test"
+         ),
+         version = 2
+     )
 
     private val consentCallback = object : IdleConsentCallback() {
         override fun onAcknowledged(hasUserAgreedToTerms: Boolean, hasUserAgreedToPrivacy: Boolean) {
