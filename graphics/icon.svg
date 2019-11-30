@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <text id="text-1" font-family="AmericanTypewriter, American Typewriter" font-size="48" font-weight="normal" fill="#2196F3">
+            <tspan x="113.296" y="82">IdleConsent</tspan>
+        </text>
+        <filter x="-0.7%" y="-4.5%" width="101.9%" height="112.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-3" cx="289" cy="291" r="40"></circle>
+        <filter x="-6.9%" y="-6.9%" width="116.2%" height="116.2%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M292.115788,314 C305.285981,295.188062 317.496293,279.717502 328.746725,267.58832 C334.006617,261.917588 341.424375,255.054815 351,247 C331.525402,254.116724 311.897331,272.63476 292.115788,302.554108 C277.541647,289.434992 267.485285,285.307985 260.960824,281.645599 C254.436362,277.983212 282.944596,300.483337 292.115788,314 Z" id="path-5"></path>
+        <filter x="-6.0%" y="-8.2%" width="114.3%" height="119.4%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#AED581" x="0" y="0" width="500" height="500"></rect>
+        <polygon id="Document-Shadow" fill-opacity="0.18" fill="#000000" points="62.139124 463.033839 437.51833 123.182191 500 194 500 500 97 500"></polygon>
+        <polygon id="Header-Shadow" fill-opacity="0.18" fill="#000000" points="64 102 440 40.1204088 500 113.346852 500 500 421.463971 500"></polygon>
+        <polygon id="Polygon" fill="#FFFFFF" points="248.928098 16 440 40.1204088 436 102 64 102 60 40.1204088"></polygon>
+        <g id="IdleConsent" fill="#2196F3" fill-opacity="1">
+            <use filter="url(#filter-2)" xlink:href="#text-1"></use>
+            <use xlink:href="#text-1"></use>
+        </g>
+        <g id="Document" transform="translate(60.000000, 121.000000)">
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="380" height="345" rx="8"></rect>
+            <polyline id="Path" stroke="#26C6DA" stroke-width="6" points="36 73 49.6834681 55 62.5324059 73 79.8538604 55 93.1950297 73 110.706022 55 122.959154 73 137.259898 55 150.680623 73 165.280527 55 179.073797 73 193.930353 55 208 73"></polyline>
+            <g id="Oval">
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                <use fill="#4CAF50" fill-rule="evenodd" xlink:href="#path-3"></use>
+            </g>
+            <polyline id="Path" stroke="#26C6DA" stroke-width="4" points="41 134 57.6810579 116 73.3447679 134 94.4607732 116 110.724546 134 132.07161 116 148.118119 134 164.442552 116 181.181467 134 198.601563 116 215.416477 134 233.527606 116 253.017988 134 274.508989 116 297.289169 134 317.693596 116 336 134"></polyline>
+            <polyline id="Path" stroke="#26C6DA" stroke-width="4" points="41 185 57.6810579 167 73.3447679 185 94.4607732 167 110.724546 185 132.07161 167 148.118119 185 164.442552 167 181.181467 185 198.601563 167 215.416477 185 233.527606 167 253.017988 185 274.508989 167 297.289169 185 317.693596 167 336 185"></polyline>
+            <polyline id="Path" stroke="#26C6DA" stroke-width="4" points="41 236 57.6810579 218 73.3447679 236 94.4607732 218 110.724546 236 132.07161 218 148.118119 236 164.442552 218 181.181467 236 198.601563 218 215.416477 236 233.527606 218 253.017988 236 274.508989 218 297.289169 236 317.693596 218 336 236"></polyline>
+            <g id="Path-3">
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+            </g>
+        </g>
+    </g>
+</svg>
