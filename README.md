@@ -1,17 +1,6 @@
 ![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg?sanitize=true)
 ![Bintray](https://img.shields.io/bintray/v/idleoffice/IdleConsent/idleconsent.svg)
-[![Download](https://api.bintray.com/packages/idleoffice/IdleConsent/idleconsent/images/download.svg?version=0.2.5-alpha) Download][https://bintray.com/idleoffice/IdleConsent/idleconsent/0.2.5-alpha/link]
 
-<div>
-<ul class="text-center list-unstyled list-inline">
-<li style="height: 300px;">
-    ![Example 1](/graphics/example.png)
-</li>
-<li style="height: 300px;">
-    ![Example 2](/graphics/example2.png)
-</li>
-</ul>
-</div>
 
 # IdleConsent
 A simple library for adding a **privacy** and **terms and conditions** dialog
@@ -19,6 +8,13 @@ to your application.
 
 IdleConsent allows you to specify a basic configuration and reliably retrieve acceptance for your 
 (optional) privacy policy and your terms and conditions.
+
+### Examples
+
+<div>
+<img height="600" src="/graphics/example.png" alt="Example 1"/>
+<img height="600" src="/graphics/example2.png" alt="Example 2"/>
+</div>
 
 ## Official Repo
 Please use the [official IdleConsent repository on GitLab](https://gitlab.com/dan-0/idleconsent/)
