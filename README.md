@@ -4,10 +4,10 @@
 
 <div>
 <ul class="text-center list-unstyled list-inline">
-<li>
+<li style="height: 300px">
     ![Example 1](/graphics/example.png)
 </li>
-<li>
+<li style="height: 300px">
     ![Example 2](/graphics/example2.png)
 </li>
 </ul>
