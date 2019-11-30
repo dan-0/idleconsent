@@ -1,13 +1,13 @@
 ![pipeline](https://gitlab.com/dan-0/idleconsent/badges/master/build.svg?sanitize=true)
 ![Bintray](https://img.shields.io/bintray/v/idleoffice/IdleConsent/idleconsent.svg)
-[![Download](https://api.bintray.com/packages/idleoffice/IdleConsent/idleconsent/images/download.svg?version=0.2.5-alpha)][https://bintray.com/idleoffice/IdleConsent/idleconsent/0.2.5-alpha/link]
+[![Download](https://api.bintray.com/packages/idleoffice/IdleConsent/idleconsent/images/download.svg?version=0.2.5-alpha) Download][https://bintray.com/idleoffice/IdleConsent/idleconsent/0.2.5-alpha/link]
 
 <div>
 <ul class="text-center list-unstyled list-inline">
-<li style="height: 300px">
+<li style="height: 300px;">
     ![Example 1](/graphics/example.png)
 </li>
-<li style="height: 300px">
+<li style="height: 300px;">
     ![Example 2](/graphics/example2.png)
 </li>
 </ul>
